@@ -3,14 +3,24 @@ package com.example.shoppingapp.models;
 import java.util.ArrayList;
 
 public class Product {
-    String name, unit, price;
+    String name, unit, price, image;
+
 
     public Product(){}
 
-    public Product(String name, String unit, String price) {
+    public Product(String name, String unit, String price, String image) {
         this.name = name;
         this.unit = unit;
         this.price = price;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {

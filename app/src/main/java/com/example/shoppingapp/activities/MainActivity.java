@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(SampleData.MOBILE);
         adapter.addFragment(SampleData.LATOP);
         adapter.addFragment(SampleData.DESKTOP);
+
         viewPager.setAdapter(adapter);
     }
 

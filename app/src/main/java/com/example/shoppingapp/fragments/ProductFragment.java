@@ -47,10 +47,8 @@ public class ProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product, container, false);
         catName = getArguments().getString("cat");
-        Toast.makeText(getActivity(), ""+catName, Toast.LENGTH_SHORT).show();
 
         mList = SampleData.getData(catName);
-        Toast.makeText(getActivity(), ""+mList.size(), Toast.LENGTH_SHORT).show();
         init(view);
         return view;
     }
