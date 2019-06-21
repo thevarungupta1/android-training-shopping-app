@@ -2,8 +2,10 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <include layout="@layout/toolbar"/>
 
     <LinearLayout
+        android:layout_below="@+id/toolbar"
         android:weightSum="3"
         android:layout_above="@+id/layout_buttons"
         android:orientation="vertical"
@@ -25,14 +27,14 @@
 
             <TextView
                 android:text="Apple Mac Book Pro"
-                android:textSize="30dp"
+                android:textSize="18dp"
                 android:textColor="@color/primaryText"
                 android:id="@+id/text_view_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:text="1 Pcs"
                 android:id="@+id/text_view_product_unit"
                 android:layout_width="match_parent"
@@ -41,7 +43,7 @@
             <TextView
                 android:gravity="right"
                 android:layout_marginTop="20dp"
-                android:textSize="32dp"
+                android:textSize="20dp"
                 android:text="$ 1000"
                 android:id="@+id/text_view_product_price"
                 android:layout_width="match_parent"

@@ -1,8 +1,10 @@
 package com.example.shoppingapp.activities;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,8 @@ import com.example.shoppingapp.models.Product;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
+
+    Toolbar toolbar;
     ImageView imageView;
     TextView textViewProductName, textViewProductUnit, textViewProductPrice;
     Button buttonAddToCart, buttonBuyNow;
@@ -24,10 +28,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
+
+
         init();
     }
 
     private void init() {
+        toolbar = findViewById(R.id.toolbar);
+
         imageView = findViewById(R.id.image_view);
         textViewProductName = findViewById(R.id.text_view_product_name);
         textViewProductUnit = findViewById(R.id.text_view_product_unit);
@@ -42,6 +50,10 @@ public class ProductDetailActivity extends AppCompatActivity {
             textViewProductUnit.setText(product.getUnit());
             textViewProductPrice.setText(product.getPrice());
             Glide.with(this).load(product.getImage()).into(imageView);
+
+            toolbar.setTitle(product.getName());
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
 
