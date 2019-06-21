@@ -1,8 +1,12 @@
 package com.example.shoppingapp.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Serializable {
+
+    public static final String KEY_PRODUCT = "product";
+
     String name, unit, price, image;
 
 

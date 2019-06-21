@@ -1,6 +1,7 @@
 package com.example.shoppingapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activities.ProductDetailActivity;
 import com.example.shoppingapp.models.Product;
 
 import java.util.ArrayList;
@@ -38,9 +40,9 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.MyView
         Product product = mList.get(i);
         myViewHolder.textViewName.setText(product.getName());
         myViewHolder.textViewUnit.setText(product.getUnit());
-        myViewHolder.textViewPrice.setText(product.getPrice());
+        myViewHolder.textViewPrice.setText("$"+product.getPrice());
 
-        Glide.with(mContext).load(product.getImage()).into(myViewHolder.imageView);
+        Glide.with(mContext).load(product.getImage()).override(50).into(myViewHolder.imageView);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.MyView
         notifyDataSetChanged();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textViewName, textViewUnit, textViewPrice;
         ImageView imageView;
@@ -64,6 +66,15 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.MyView
             textViewUnit = itemView.findViewById(R.id.text_view_product_unit);
             textViewPrice = itemView.findViewById(R.id.text_view_product_price);
             imageView = itemView.findViewById(R.id.image_view);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Product product = mList.get(getAdapterPosition());
+            Intent intent = new Intent(mContext, ProductDetailActivity.class);
+            intent.putExtra(Product.KEY_PRODUCT, product);
+            mContext.startActivity(intent);
         }
     }
 }
