@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.adapters.ProductFragmentAdapter;
+import com.example.shoppingapp.database.DBHelper;
 import com.example.shoppingapp.fragments.ProductFragment;
 import com.example.shoppingapp.models.Product;
 import com.example.shoppingapp.models.SampleData;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    DBHelper dbHelper;
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        dbHelper = new DBHelper(this);
 
         init();
     }

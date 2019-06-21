@@ -7,24 +7,21 @@ public class Product implements Serializable {
 
     public static final String KEY_PRODUCT = "product";
 
-    String name, unit, price, image;
+    String name, unit, image;
+    int price;
 
 
     public Product(){}
 
-    public Product(String name, String unit, String price, String image) {
+    public Product(String name, String unit, int price, String image) {
         this.name = name;
         this.unit = unit;
+        this.image = image;
         this.price = price;
-        this.image = image;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public static String getKeyProduct() {
+        return KEY_PRODUCT;
     }
 
     public String getName() {
@@ -43,13 +40,19 @@ public class Product implements Serializable {
         this.unit = unit;
     }
 
-    public String getPrice() {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
-
-
 }

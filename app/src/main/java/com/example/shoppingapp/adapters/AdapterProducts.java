@@ -40,7 +40,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.MyView
         Product product = mList.get(i);
         myViewHolder.textViewName.setText(product.getName());
         myViewHolder.textViewUnit.setText(product.getUnit());
-        myViewHolder.textViewPrice.setText("$"+product.getPrice());
+        myViewHolder.textViewPrice.setText(String.valueOf(product.getPrice()));
 
         Glide.with(mContext).load(product.getImage()).override(50).into(myViewHolder.imageView);
     }
