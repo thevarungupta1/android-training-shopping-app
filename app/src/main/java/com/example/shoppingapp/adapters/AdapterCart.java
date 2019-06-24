@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Cart cart = mList.get(i);
         viewHolder.textViewProductName.setText(cart.getProductName());
+        viewHolder.textViewQunatity.setText(String.valueOf(cart.getQuantity()));
+
+        viewHolder.textViewPrice.setText(String.valueOf(cart.getProductPrice()*cart.getQuantity()));
         Glide.with(mContext).load(cart.getProductImage()).into(viewHolder.imageView);
 
     }
@@ -51,17 +55,23 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView textViewProductName;
+        TextView textViewProductName, textViewQunatity, textViewPrice;
         ImageView imageView;
-        Button buttonDelete;
+        ImageButton buttonDelete, buttonAdd, buttonMinus;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewProductName = itemView.findViewById(R.id.text_view_product_name);
             imageView = itemView.findViewById(R.id.image_view);
+            textViewQunatity = itemView.findViewById(R.id.text_view_qty);
+            textViewPrice = itemView.findViewById(R.id.text_view_product_price);
             buttonDelete = itemView.findViewById(R.id.button_delete);
+            buttonAdd = itemView.findViewById(R.id.button_add);
+            buttonMinus = itemView.findViewById(R.id.button_minus);
             buttonDelete.setOnClickListener(this);
+            buttonAdd.setOnClickListener(this);
+            buttonAdd.setOnClickListener(this);
         }
 
         @Override

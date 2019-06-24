@@ -95,7 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public boolean deleteFromCart(String productName){
-        String whereClause = COLUMN_ID + "=?";
+        String whereClause = COLUMN_PRODUCT_NAME+ "=?";
         String[] whereArgs = new String[]{String.valueOf(productName)};
         return database.delete(TABLE_NAME, whereClause, whereArgs) > 0;
     }
@@ -113,6 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 Cart cart = new Cart();
                 cart.setProductName(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME)));
                 cart.setProductImage(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_IMAGE)));
+                cart.setProductPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_PRICE)));
+                cart.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
                 list.add(cart);
             }
             while (cursor.moveToNext());

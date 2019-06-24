@@ -89,8 +89,24 @@ public class CartActivity extends AppCompatActivity implements AdapterCart.Click
     @Override
     public void itemClicked(View v, int position) {
         Cart cart = mList.get(position);
-        dbHelper.deleteFromCart(cart.getProductName());
-        mList.remove(position);
-        adapterCart.notifyDataSetChanged();
+        int qty = cart.getQuantity();
+        switch (v.getId()){
+            case R.id.button_add:
+                cart.setQuantity(qty+1);
+
+                mList.set(position, cart);
+                dbHelper.updateCartQuantity(cart);
+                adapterCart.notifyItemChanged(position);
+                break;
+            case R.id.button_minus:
+                break;
+            case R.id.button_delete:
+                dbHelper.deleteFromCart(cart.getProductName());
+                mList.remove(position);
+                adapterCart.notifyDataSetChanged();
+                break;
+        }
+
+
     }
 }
