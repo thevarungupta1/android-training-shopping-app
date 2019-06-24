@@ -3,12 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
+        android:src="@drawable/ic_search_black_24dp"
         android:id="@+id/image_view"
         android:layout_width="50dp"
         android:layout_height="50dp" />
 
     <TextView
         android:id="@+id/text_view_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Delete"
+        android:layout_alignParentRight="true"
+        android:id="@+id/button_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

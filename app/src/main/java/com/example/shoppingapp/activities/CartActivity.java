@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.shoppingapp.R;
@@ -18,7 +19,7 @@ import com.example.shoppingapp.models.Cart;
 
 import java.util.ArrayList;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements AdapterCart.ClickListener {
 
     Toolbar toolbar;
     RecyclerView mRecyclerView;
@@ -54,6 +55,8 @@ public class CartActivity extends AppCompatActivity {
         adapterCart = new AdapterCart(this, mList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapterCart);
+        adapterCart.setClickListener(this);
+
     }
 
     @Override
@@ -83,4 +86,11 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void itemClicked(View v, int position) {
+        Cart cart = mList.get(position);
+        dbHelper.deleteFromCart(cart.getProductName());
+        mList.remove(position);
+        adapterCart.notifyDataSetChanged();
+    }
 }

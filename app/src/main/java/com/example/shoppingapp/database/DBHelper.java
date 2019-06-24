@@ -57,13 +57,25 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean isProductAlreadyInCart(Product product){
-        return false;
+        String query = "select * from "+ TABLE_NAME+" where  "+ COLUMN_ID + "=?";
+        String[] args = new String[]{product.getName()};
+        Cursor cursor = database.rawQuery(query,args );
+        int count=  cursor.getCount();
+        cursor.close();
+        if(count ==0){
+            // item does not exist
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public void addToCart(Product product){
         if(isProductAlreadyInCart(product)){
             // increment the quantity
             // update statment and increase the quantity by 1
+            ContentValues values = new ContentValues();
+            //values.put(COLUMN_QUANTITY, );
         }else{
             ContentValues values = new ContentValues();
             values.put(COLUMN_PRODUCT_NAME, product.getName());
@@ -73,8 +85,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
             database.insert(TABLE_NAME,null, values);
         }
-
     }
+
+    public void updateCartQuantity(Cart cart){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_QUANTITY, cart.getQuantity());
+        database.update(TABLE_NAME, contentValues, COLUMN_ID+ "=?", new String[]{String.valueOf(cart.getCartItemId())});
+    }
+
+
+    public boolean deleteFromCart(String productName){
+        String whereClause = COLUMN_ID + "=?";
+        String[] whereArgs = new String[]{String.valueOf(productName)};
+        return database.delete(TABLE_NAME, whereClause, whereArgs) > 0;
+    }
+
+
+
+
 
     public ArrayList<Cart> getAllCart(){
         ArrayList<Cart> list = new ArrayList<>();
